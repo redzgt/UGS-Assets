@@ -1,0 +1,47 @@
+name: Bulk Delete Large Folders
+
+on:
+  workflow_dispatch: # Allows you to run this manually
+
+jobs:
+  delete-folders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove Folders
+        run: |
+          rm -rf "madalincarmulti"
+          rm -rf "STICKMAN GTA"
+          rm -rf "super star car"
+          rm -rf "3dash"
+          rm -rf "the box of secrets"
+          rm -rf "cheese chompers 3"
+          rm -rf "evil nun schools out"
+          rm -rf "two stunts"
+          rm -rf "5b"
+          rm -rf "scary-teacher-3D"
+          rm -rf "fnf0.7.5"
+          rm -rf "flip master"
+          rm -rf "UCDS other version"
+          rm -rf "obby but your on a bike"
+          rm -rf "traffic jam 3d"
+          rm -rf "quake"
+          rm -rf "super auto pets"
+          rm -rf "madalin-stunt-cars-2-main"
+          rm -rf "sort-court"
+          rm -rf "csgo surf"
+          rm -rf "gardenless"
+          rm -rf "kraft quest"
+          rm -rf "archesspalago"
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@://github.com"
+          git add .
+          git commit -m "Remove games with assets exceeding Cloudflare 25MB limit"
+          git push
