@@ -1,0 +1,18 @@
+name: Find Large Files
+
+on:
+  workflow_dispatch: # Allows you to run this manually
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1 # Quick shallow clone
+
+      - name: Scan for files over 25MB
+        run: |
+          echo "=== FILES LARGER THAN 25 MB ==="
+          find . -type f -size +25M | sed 's|^\./||'
